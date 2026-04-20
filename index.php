@@ -1,26 +1,22 @@
-<?php include("includes/header.php"); ?>
-
-<h1>Tere tulemast fotostuudiosse!</h1>
-
-<div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-
 <?php
-$pildid = glob("reklaam/*");
+require_once 'config.php';
 
-shuffle($pildid);
+$page = $_GET['page'] ?? 'home';
 
-$active = "active";
+include 'includes/header.php';
 
-foreach ($pildid as $pilt) {
-    echo '<div class="carousel-item '.$active.'">';
-    echo '<img src="'.$pilt.'" class="d-block w-100">';
-    echo '</div>';
-    $active = "";
+switch($page) {
+    case 'kontakt':
+        include 'pages/kontakt.php';
+        break;
+    case 'kalkulaator':
+        include 'pages/kalkulaator.php';
+        break;
+    case 'ostukorv':
+        include 'pages/ostukorv.php';
+        break;
+    default:
+        include 'pages/home.php';
 }
-?>
 
-    </div>
-</div>
-
-<?php include("includes/footer.php"); ?>
+include 'includes/footer.php';
