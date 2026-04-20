@@ -1,16 +1,13 @@
-<?php include("includes/header.php"); ?>
+<h1>Kontakt</h1>
 
-<h2>Kontakt</h2>
-
-<iframe 
-src="https://maps.google.com/maps?q=Tallinn&t=&z=13&ie=UTF8&iwloc=&output=embed"
-width="100%" height="300"></iframe>
-
-<form method="post">
-    Nimi: <input type="text" name="nimi" class="form-control"><br>
-    Email: <input type="email" name="email" class="form-control"><br>
-    Sõnum: <textarea name="sonum" class="form-control"></textarea><br>
-    <button class="btn btn-primary">Saada</button>
+<form method="POST">
+    <input type="text" name="nimi" placeholder="Sinu nimi">
+    <button type="submit">Saada</button>
 </form>
 
-<?php include("includes/footer.php"); ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nimi = htmlspecialchars($_POST['nimi'] ?? '');
+    echo "<p>Tere, $nimi!</p>";
+}
+?>
